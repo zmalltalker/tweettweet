@@ -33,6 +33,7 @@
 		02A758840DF4DE1000290192 /* TweetStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02A758830DF4DE1000290192 /* TweetStorage.xcdatamodeld */; };
 		02D9D2100DF3481400435B26 /* BCLengthLimitFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D9D20F0DF3481400435B26 /* BCLengthLimitFormatter.m */; };
 		2932C4C80E09165B008D7DCF /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2932C4C70E09165B008D7DCF /* Growl.framework */; };
+		296D48400E0935BB0035E066 /* TweetTweet.icns in Resources */ = {isa = PBXBuildFile; fileRef = 296D483F0E0935BB0035E066 /* TweetTweet.icns */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -103,6 +104,7 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		2932C4C70E09165B008D7DCF /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = /Library/Frameworks/Growl.framework; sourceTree = "<absolute>"; };
+		296D483F0E0935BB0035E066 /* TweetTweet.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TweetTweet.icns; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -275,6 +277,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				296D483F0E0935BB0035E066 /* TweetTweet.icns */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				028C465E0DF76CF20097AEF9 /* MainMenu.xib */,
@@ -342,6 +345,7 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				02743BF80DF62E940097DF2B /* Preferences.xib in Resources */,
 				028C46600DF76CF20097AEF9 /* MainMenu.xib in Resources */,
+				296D48400E0935BB0035E066 /* TweetTweet.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
