@@ -1,1 +1,5 @@
-TweetTweet is a cocoa client for Twitter. 
+TweetTweet is a cocoa client for Twitter. It is created by Matt Legend Gemmell, and originally hosted with Bazaar on launchpad (see CREDITS for details).
+This git repo will be updated with the latest changes from the original code, but modifications will be made here too.
+
+To build the application, open TweetTweet.xcodeproj in XCode and build. You will need the Growl framework (available from http://growl.info/downloads_developers.php): put the Growl.framework into either ~/Library/Frameworks/ og /Library/Frameworks - and you should be good to go.
+
