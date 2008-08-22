@@ -10,6 +10,7 @@
 #import "TTUser.h"
 #import "RegexKitLite.h"
 #import "RKLMatchEnumerator.h"
+#import <AutoHyperlinks/AutoHyperlinks.h>
 
 @implementation TTTweet
 
@@ -37,15 +38,13 @@
 
 - (NSAttributedString *)displayContents {
 	if(!displayContents) {
-		//NSString *html = [NSString stringWithFormat:@"%@", self.text];
-		//self.displayContents = [[[NSAttributedString alloc] initWithHTML:[html dataUsingEncoding:NSUTF8StringEncoding] documentAttributes:nil] autorelease];
 		self.displayContents = [self linkifyText:self.text];
 	}
 	return displayContents;
 }
 
 /**
- * Processes the given string, linkifying usernames, and eventually URLs if we need to
+ * Processes the given string, linkifying usernames, and URLs if we need to
  */
 - (NSAttributedString *)linkifyText:(NSString *)originalContents {
 	NSMutableAttributedString *outString = [[[NSMutableAttributedString alloc] initWithString:originalContents] autorelease];
@@ -66,6 +65,14 @@
 		}
 	}
 	[outString fixAttributesInRange:NSMakeRange(0, [outString length])];
-	return [[[NSAttributedString alloc] initWithAttributedString:outString] autorelease]; // there a way to do immutable copy?
+	//return [[[NSAttributedString alloc] initWithAttributedString:outString] autorelease]; // there a way to do immutable copy?
+	AHHyperlinkScanner *linkScanner = [[[AHHyperlinkScanner alloc] initWithStrictChecking:NO] autorelease];
+	NSArray *links = [linkScanner allURLsFromString:[outString string]];
+	for(AHMarkedHyperlink *link in links) {
+		[outString addAttribute:NSLinkAttributeName value:[link URL] range:[link range]];
+		[outString addAttribute:NSForegroundColorAttributeName value:[NSColor blueColor] range:[link range]];
+		[outString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:1] range:[link range]];
+	}
+	return outString;
 }
 @end

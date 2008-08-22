@@ -1,17 +1,16 @@
 //
-//  TTTweetViewBox.h
+//  TTTweetTextField.h
 //  TweetTweet
 //
-//  Created by Jeremy Knope on 6/15/08.
+//  Created by Jeremy Knope on 6/23/08.
 //  Copyright 2008 Buttered Cat. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
 
 
-@interface TTTweetViewBox : NSBox {
+@interface TTTweetTextField : NSTextField {
 	IBOutlet NSCollectionViewItem *viewItem;
-	IBOutlet NSArrayController *tweetArrayController;
 }
 
 @end

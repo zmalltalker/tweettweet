@@ -12,14 +12,15 @@
 #import <Cocoa/Cocoa.h>
 #import <Growl/Growl.h>
 #import "TweetStorage.h"
+#import "TTTweetTextView.h"
 
 @interface AppController : NSObject <TweetStorageDelegate,GrowlApplicationBridgeDelegate> {
 	TweetStorage *storage;
-	NSArray *recentStatusesArray;
-	IBOutlet NSTableView *statusesTable;
-	IBOutlet NSArrayController *statusesArrayController;
+	//NSArray *recentStatusesArray;
+	NSArrayController *statusesArrayController;
 	
-	IBOutlet NSTextField *messageField;
+	IBOutlet NSCollectionView *tweetsCollectionView;
+	IBOutlet TTTweetTextView *messageView;
 	IBOutlet NSTextField *messageCounterField;
 	IBOutlet NSTextField *errorField;
 	IBOutlet NSProgressIndicator *progressIndicator;
@@ -36,8 +37,16 @@
 	IBOutlet NSTextField *usernamePromptField;
 	IBOutlet NSTextField *passwordPromptField;
 	IBOutlet NSButton *savePasswordCheckbox;
+	
+	NSWindowController *tweetWindowController;
+	
+	NSPredicate *tweetsFilterPredicate;
+	NSArray *tweetsSortDescriptors;
+	
 }
-@property(readwrite, retain) NSArray *recentStatusesArray;
+@property(readwrite, retain) NSArrayController *statusesArrayController;
+@property(readwrite, retain) NSPredicate *tweetsFilterPredicate;
+@property(readwrite, retain) NSArray *tweetsSortDescriptors;
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
 - (NSManagedObjectModel *)managedObjectModel;

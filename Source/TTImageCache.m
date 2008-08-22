@@ -51,7 +51,7 @@ static TTImageCache* sharedImageCache;
 - (void)storeImage:(NSImage *)anImage withId:(NSInteger)anId {
 	NSString *imagePath = [cacheFolder stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.tiff", anId]];
 	if(![[anImage TIFFRepresentation] writeToFile:imagePath atomically:NO]) {
-		// do something good?
+		NSLog(@"Failed to store image: %@", imagePath);
 	}
 }
 

@@ -5,28 +5,16 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFile</key>
-	<string>TweetTweet-icon</string>
+	<string>AutoHyperlinks.framework</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.buttered-cat.TweetTweet</string>
+	<string>com.adiumX.AutoHyperlinks</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>${PRODUCT_NAME}</string>
 	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string>0.5b7</string>
+	<string>FMWK</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleIconFile</key>
-	<string>TweetTweet.icns</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
-	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
-	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
+	<string>0.8</string>
 </dict>
 </plist>

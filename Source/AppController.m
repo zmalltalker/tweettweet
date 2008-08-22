@@ -13,26 +13,43 @@
 
 @implementation AppController
 
-@synthesize recentStatusesArray;
+@synthesize statusesArrayController, tweetsFilterPredicate, tweetsSortDescriptors;
+- (id)init {
+	if(self = [super init]) {
+		tweetsSortDescriptors = [[NSArray arrayWithObjects:[[NSSortDescriptor alloc] initWithKey:@"created_at" ascending:NO], nil] retain];
+		
+		self.tweetsFilterPredicate = [NSPredicate predicateWithFormat:@"created_at >= %@", [NSDate dateWithTimeIntervalSinceNow:-(60*60*24)]];
+		statusesArrayController = [[NSArrayController alloc] init];
+		[statusesArrayController setManagedObjectContext:[self managedObjectContext]];
+		[statusesArrayController setEntityName:@"TTTweet"];
+		[statusesArrayController fetch:self];
+		[statusesArrayController setFilterPredicate:self.tweetsFilterPredicate];
+		[statusesArrayController setSortDescriptors:tweetsSortDescriptors];
+	}
+	return self;
+}
 
 - (void)awakeFromNib
 {
 	BCLengthLimitFormatter *textSizeFormatter = [[BCLengthLimitFormatter alloc] initWithLimit:140];
 	textSizeFormatter.lengthLimit = 140;
-	[messageField setFormatter:textSizeFormatter];
-	[messageField setDelegate:self];
-	[statusesTable setRowHeight:60];
+	//[messageField setFormatter:textSizeFormatter];
+	//[messageField setDelegate:self];
+	[messageView setTarget:self];
+	[messageView setAction:@selector(sendTweet:)];
 	
     storage = [[TweetStorage alloc] initWithManagedObjectContext:[self managedObjectContext]];
 	storage.delegate = self;
 	
 	[GrowlApplicationBridge setGrowlDelegate:self];
+	[statusesArrayController addObserver:self forKeyPath:@"selection" options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld) context:nil];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"created_at" ascending:NO];
+	/*NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"created_at" ascending:NO];
 	[statusesArrayController setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
 	[sortDescriptor release];
+	*/
 	NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"twitterUsername"];
 	EMKeychainItem *keychainItem = [[EMKeychainProxy sharedProxy] genericKeychainItemForService:@"TweetTweet" withUsername:username];
 	NSString *password = [keychainItem password];
@@ -56,7 +73,6 @@
 }
 
 - (IBAction)cancelUsernamePassword:(id)sender {
-	NSLog(@"Cancel!");
 	[usernamePromptField setStringValue:@""];
 	[passwordPromptField setStringValue:@""];
 	[[NSApplication sharedApplication] endSheet:usernamePasswordWindow];
@@ -68,7 +84,10 @@
 	[[NSUserDefaults standardUserDefaults] setObject:[usernamePromptField stringValue] forKey:@"twitterUsername"];
 	if([savePasswordCheckbox state] == NSOnState) {
 		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"savePassword"];
-		[[EMKeychainProxy sharedProxy] addGenericKeychainItemForService:@"TweetTweet" withUsername:[usernamePromptField stringValue] password:[passwordPromptField stringValue]];
+		EMKeychainItem *keychainItem = [[EMKeychainProxy sharedProxy] genericKeychainItemForService:@"TweetTweet" withUsername:[usernamePromptField stringValue]];
+		if(!keychainItem) {
+			[[EMKeychainProxy sharedProxy] addGenericKeychainItemForService:@"TweetTweet" withUsername:[usernamePromptField stringValue] password:[passwordPromptField stringValue]];
+		}
 	}
 	else {
 		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"savePassword"];
@@ -236,32 +255,36 @@
 	if(preferencesController) {
 		[preferencesController release], preferencesController = nil;
 	}
+	[tweetsSortDescriptors release];
     [super dealloc];
 }
 
 #pragma mark -
 
 - (IBAction)sendTweet:(id)sender {
-	NSString *message = [messageField stringValue];
-	[messageField setEnabled:NO];
+	NSString *message = [[messageView textStorage] string];
+	//[messageView setEnabled:NO];
 	[storage sendStatus:message];
 	[progressIndicator startAnimation:nil];
 	[errorField setStringValue:@""];
+	[mainWindow makeFirstResponder:tweetsCollectionView];
 }
 
 - (IBAction)replyToTweet:(id)sender {
 	if([[statusesArrayController selectedObjects] count]) {
 		TTTweet *tweet = [[statusesArrayController selectedObjects] objectAtIndex:0];
-		[messageField setStringValue:[NSString stringWithFormat:@"@%@ ", tweet.user.screen_name]];
-		[mainWindow makeFirstResponder:messageField];
+		NSAttributedString *msg = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"@%@ ", tweet.user.screen_name]];
+		[[messageView textStorage] setAttributedString:[msg autorelease]];
+		[mainWindow makeFirstResponder:messageView];
 	}
 }
 
 - (IBAction)directMessage:(id)sender {
 	if([[statusesArrayController selectedObjects] count]) {
 		TTTweet *tweet = [[statusesArrayController selectedObjects] objectAtIndex:0];
-		[messageField setStringValue:[NSString stringWithFormat:@"d %@ ", tweet.user.screen_name]];
-		[mainWindow makeFirstResponder:messageField];
+		NSAttributedString *msg = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"d %@ ", tweet.user.screen_name]];
+		[[messageView textStorage] setAttributedString:msg];
+		[mainWindow makeFirstResponder:messageView];
 	}
 }
 
@@ -270,12 +293,15 @@
 }
 
 - (IBAction)refreshTweets:(id)sender {
+	self.tweetsFilterPredicate = [NSPredicate predicateWithFormat:@"created_at >= %@", [NSDate dateWithTimeIntervalSinceNow:-(60*60*24)]];
+	[statusesArrayController setFilterPredicate:self.tweetsFilterPredicate];
 	[progressIndicator startAnimation:self];
 	[errorField setStringValue:@""];
 	[storage sync];
 }
 
 - (IBAction)showPreferences:(id)sender {
+	NSLog(@"In TweetsArrayController: %i", [[statusesArrayController arrangedObjects] count]);
 	if(!preferencesController) {
 		preferencesController = [[NSWindowController alloc] initWithWindowNibName:@"Preferences"];
 	}
@@ -285,13 +311,15 @@
 #pragma mark -
 
 - (void)controlTextDidChange:(NSNotification *)aNotification {
-	if([[messageField stringValue] length] == 0) {
+	if([[[messageView textStorage] string] length] == 0) {
 		[messageCounterField setStringValue:@""];
 	}
 	else {
-		[messageCounterField setIntValue:140 - [[messageField stringValue] length]];
+		[messageCounterField setStringValue:[NSString stringWithFormat:@"%i chars",(140 - [[[messageView textStorage] string] length])]];
 	}
 }
+
+#pragma mark -
 
 - (void)tweetsUpdateFailedWithError:(NSString *)errorString {
 	[progressIndicator stopAnimation:nil];
@@ -300,17 +328,18 @@
 
 - (void)tweetsUpdated {
 	[progressIndicator stopAnimation:nil];
+	NSLog(@"Done updating, predicate: %@", [statusesArrayController filterPredicate]);
 }
 
 - (void)tweetUpdateSucceeded {
-	[messageField setStringValue:@""];
-	[messageField setEnabled:YES];
+	[[messageView textStorage] setAttributedString:[[[NSAttributedString alloc] init] autorelease]];
+	//[messageView setEnabled:YES];
 	[progressIndicator stopAnimation:nil];
 	[self controlTextDidChange:nil];
 }
 
 - (void)tweetUpdateFailedWithError:(NSString *)errorString {
-	[messageField setEnabled:YES];
+	//[messageView setEnabled:YES];
 	[progressIndicator stopAnimation:nil];
 	[errorField setStringValue:errorString];
 }
@@ -329,7 +358,7 @@
 			iconData:[tweet.user.profileImage TIFFRepresentation]
 			priority:0
 			isSticky:NO
-			clickContext:tweet];
+			clickContext:tweet.tweet_id];
 		counter++;
 	}
 	if(counter < [newTweets count]) {
@@ -343,11 +372,15 @@
 			clickContext:nil];
 	}
 }
-// should this be replaced by a KVO method on the array controller instead? instead
-// TODO: also have to change this to handle NSCollectionView, KVO on array controller selection might work
-- (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
-	if([[statusesArrayController selectedObjects] count] > 0) {
+
+#pragma mark -
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	if([keyPath isEqualToString:@"selection"] && [[statusesArrayController selectedObjects] count] > 0) {
 		TTTweet *tweet = [[statusesArrayController selectedObjects] objectAtIndex:0];
+		if([tweet.read boolValue]) {
+			return;
+		}
 		tweet.read = [NSNumber numberWithBool:YES];
 	}
 }
@@ -355,7 +388,6 @@
 #pragma mark Growl delegate methods
 
 - (void)growlNotificationWasClicked:(id)clickContext {
-	NSLog(@"We got a click");
 	NSLog(@"Clicked on %@", clickContext);
 }
 

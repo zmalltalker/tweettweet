@@ -2,10 +2,26 @@
 {
 	020994FE0E04C10C00D1E91E /* RegexKitLite.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1404, 4606}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1404, 4886}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 2864}";
-			sepNavWindowFrame = "{{61, 79}, {1116, 1052}}";
+			sepNavVisRange = "{3260, 2370}";
+			sepNavWindowFrame = "{{61, 53}, {1116, 825}}";
+		};
+	};
+	020994FF0E04C10C00D1E91E /* RKLMatchEnumerator.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1057, 697}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 412}";
+			sepNavWindowFrame = "{{15, 53}, {1116, 825}}";
+		};
+	};
+	020995000E04C10C00D1E91E /* RKLMatchEnumerator.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1057, 700}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1094}";
+			sepNavWindowFrame = "{{15, 53}, {1116, 825}}";
 		};
 	};
 	023F9B4D0E05613F00791809 /* TTTweetViewBox.m */ = {
@@ -16,20 +32,36 @@
 			sepNavWindowFrame = "{{15, 121}, {1116, 1052}}";
 		};
 	};
+	025C71B00D9C0826003F2FB9 /* MGTwitterEngine.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1057, 10920}}";
+			sepNavSelRange = "{16749, 0}";
+			sepNavVisRange = "{16095, 1811}";
+			sepNavWindowFrame = "{{15, 53}, {1116, 825}}";
+		};
+	};
 	025C71D00D9C0852003F2FB9 /* AppController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1057, 924}}";
-			sepNavSelRange = "{260, 24}";
-			sepNavVisRange = "{0, 1862}";
+			sepNavIntBoundsRect = "{{0, 0}, {801, 630}}";
+			sepNavSelRange = "{310, 92}";
+			sepNavVisRange = "{165, 330}";
 			sepNavWindowFrame = "{{38, 100}, {1116, 1052}}";
 		};
 	};
 	025C71D10D9C0852003F2FB9 /* AppController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1074, 5082}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{10550, 1813}";
+			sepNavIntBoundsRect = "{{0, 0}, {801, 2954}}";
+			sepNavSelRange = "{139, 26}";
+			sepNavVisRange = "{23, 264}";
 			sepNavWindowFrame = "{{84, 58}, {1116, 1052}}";
+		};
+	};
+	028C46BF0DF780D90097AEF9 /* Growl Registration Ticket.growlRegDict */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {847, 316}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 394}";
+			sepNavWindowFrame = "{{15, 53}, {1116, 825}}";
 		};
 	};
 	0296B2860DF067BA00C2C9FB /* TweetStorage.m */ = {
@@ -54,6 +86,181 @@
 			sepNavSelRange = "{975, 11}";
 			sepNavVisRange = "{128, 2377}";
 			sepNavWindowFrame = "{{15, 121}, {1116, 1052}}";
+		};
+	};
+	02A7587F0DF4D96B00290192 /* TweetStorage.xcdatamodel */ = {
+		uiCtxt = {
+			"Xdesign Model Editor Bookmark Key" = {
+				UIContextForDetailArea = {
+					_indexOfSelectedPane = 0;
+					_indexOfSelectedView = 1;
+				};
+				UIContextForEntityArea = {
+					_indexOfSelectedView = 0;
+					chosenTableColumnns = (
+						"ET Entity",
+						"ET Abstract",
+						"ET Class",
+					);
+					chosenTableColumnns_sortDirections = (
+						YES,
+					);
+					chosenTableColumnns_sortKeys = (
+						name,
+					);
+					chosenTableColumnns_sortSelectors = (
+						"_xdcaseInsensitiveNumericCompare:",
+					);
+					chosenTableWidths = (
+						103.000000,
+						22.000000,
+						89.080078,
+					);
+				};
+				UIContextForLayoutManager = {
+					detailSplitGeometry = {
+						_collapsingFrameDimension = 0;
+						_indexOfCollapsedView = 0;
+						_percentageOfCollapsedView = 0;
+						isCollapsed = yes;
+						sizes = (
+							"{{0, 0}, {728, 218}}",
+							"{{733, 0}, {383, 218}}",
+						);
+					};
+					diagramSplitGeometry = {
+						_collapsingFrameDimension = 0;
+						_indexOfCollapsedView = 0;
+						_percentageOfCollapsedView = 0;
+						isCollapsed = yes;
+						sizes = (
+							"{{0, 0}, {1116, 220}}",
+							"{{0, 225}, {1116, 487}}",
+						);
+					};
+					tableSplitGeometry = {
+						_collapsingFrameDimension = 0;
+						_indexOfCollapsedView = 0;
+						_percentageOfCollapsedView = 0;
+						isCollapsed = yes;
+						sizes = (
+							"{{0, 0}, {239, 218}}",
+							"{{244, 0}, {482, 218}}",
+						);
+					};
+				};
+				UIContextForPropertyArea = {
+					_indexOfSelectedView = 0;
+					chosenTableColumnnFRTs = (
+						"FT Fetch Request",
+						"FT Predicate",
+					);
+					chosenTableColumnnFRTs_sortDirections = (
+						YES,
+					);
+					chosenTableColumnnFRTs_sortKeys = (
+						name,
+					);
+					chosenTableColumnnFRTs_sortSelectors = (
+						"_xdcaseInsensitiveNumericCompare:",
+					);
+					chosenTableColumnnsAT = (
+						"AT Attribute",
+						"AT Type",
+					);
+					chosenTableColumnnsAT_sortDirections = (
+						YES,
+					);
+					chosenTableColumnnsAT_sortKeys = (
+						name,
+					);
+					chosenTableColumnnsAT_sortSelectors = (
+						"_xdcaseInsensitiveNumericCompare:",
+					);
+					chosenTableColumnnsFPT = (
+						"FP FetchedProperty",
+						"FP Destination",
+						"FP Predicate",
+					);
+					chosenTableColumnnsFPT_sortDirections = (
+						YES,
+					);
+					chosenTableColumnnsFPT_sortKeys = (
+						name,
+					);
+					chosenTableColumnnsFPT_sortSelectors = (
+						"_xdcaseInsensitiveNumericCompare:",
+					);
+					chosenTableColumnnsPT = (
+						"PT Property",
+						"PT Kind",
+						"PT SharedKeyOne",
+					);
+					chosenTableColumnnsPT_sortDirections = (
+						YES,
+					);
+					chosenTableColumnnsPT_sortKeys = (
+						name,
+					);
+					chosenTableColumnnsPT_sortSelectors = (
+						"_xdcaseInsensitiveNumericCompare:",
+					);
+					chosenTableColumnnsRT = (
+						"RT Relationship",
+						"RT Destination",
+					);
+					chosenTableColumnnsRT_sortDirections = (
+						YES,
+					);
+					chosenTableColumnnsRT_sortKeys = (
+						name,
+					);
+					chosenTableColumnnsRT_sortSelectors = (
+						"_xdcaseInsensitiveNumericCompare:",
+					);
+					chosenTableWidthsAT = (
+						128.000000,
+						64.000000,
+					);
+					chosenTableWidthsFPT = (
+						128.000000,
+						64.000000,
+						144.764160,
+					);
+					chosenTableWidthsFRT = (
+						128.000000,
+						249.764160,
+					);
+					chosenTableWidthsPT = (
+						128.000000,
+						108.110840,
+						219.570801,
+					);
+					chosenTableWidthsRT = (
+						128.000000,
+						64.000000,
+					);
+				};
+				"xdesign model browser state key - shown/hidden" = 1;
+				"xdesign model diagram view visible rect key" = "{{-202, -29}, {1101, 472}}";
+			};
+			sepNavWindowFrame = "{{15, 53}, {1116, 825}}";
+		};
+	};
+	02D9D20E0DF3481400435B26 /* BCLengthLimitFormatter.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {638, 280}}";
+			sepNavSelRange = "{173, 50}";
+			sepNavVisRange = "{0, 304}";
+			sepNavWindowFrame = "{{15, 53}, {1116, 825}}";
+		};
+	};
+	089C165DFE840E0CC02AAC07 /* English */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1057, 697}}";
+			sepNavSelRange = "{44, 0}";
+			sepNavVisRange = "{0, 187}";
+			sepNavWindowFrame = "{{15, 53}, {1116, 825}}";
 		};
 	};
 	2914FD860E0905CB006BB553 /* TweetTweet */ = {
@@ -91,13 +298,27 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	296D483F0E0935BB0035E066 /* TweetTweet.icns */ = {
-		uiCtxt = {
-			sepNavWindowFrame = "{{15, 121}, {1116, 1052}}";
-		};
+	293B234D0E41D6F50083A15B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 028C46BF0DF780D90097AEF9 /* Growl Registration Ticket.growlRegDict */;
+		name = "Growl Registration Ticket.growlRegDict: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 248;
+		vrLoc = 0;
+	};
+	293B23720E41D9EB0083A15B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 028C46BF0DF780D90097AEF9 /* Growl Registration Ticket.growlRegDict */;
+		name = "Growl Registration Ticket.growlRegDict: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 394;
+		vrLoc = 0;
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
-		activeArchitecture = i386;
 		activeBuildConfigurationName = Release;
 		activeExecutable = 2914FD860E0905CB006BB553 /* TweetTweet */;
 		activeTarget = 8D1107260486CEB800E47090 /* TweetTweet */;
@@ -109,12 +330,26 @@
 			2914FD860E0905CB006BB553 /* TweetTweet */,
 		);
 		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXErrorsWarningsDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXErrorsWarningsDataSource_LocationID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					731,
+					128.20849609375,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXErrorsWarningsDataSource_TypeID,
+					PBXErrorsWarningsDataSource_MessageID,
+					PBXErrorsWarningsDataSource_LocationID,
+				);
+			};
 			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
 				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					212,
+					669,
 					20,
 					48,
 					43,
@@ -155,8 +390,12 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 235482246;
-			PBXWorkspaceStateSaveDate = 235482246;
+			PBXPerProjectTemplateStateSaveDate = 239195886;
+			PBXWorkspaceStateSaveDate = 239195886;
+		};
+		perUserProjectItems = {
+			293B234D0E41D6F50083A15B /* PBXTextBookmark */ = 293B234D0E41D6F50083A15B /* PBXTextBookmark */;
+			293B23720E41D9EB0083A15B /* PBXTextBookmark */ = 293B23720E41D9EB0083A15B /* PBXTextBookmark */;
 		};
 		sourceControlManager = 2914FDA00E0905EA006BB553 /* Source Control */;
 		userBuildSettings = {
@@ -167,5 +406,13 @@
 		executables = (
 			2914FD860E0905CB006BB553 /* TweetTweet */,
 		);
+	};
+	8D1107310486CEB800E47090 /* Info.plist */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1057, 697}}";
+			sepNavSelRange = "{707, 0}";
+			sepNavVisRange = "{0, 905}";
+			sepNavWindowFrame = "{{15, 53}, {1116, 825}}";
+		};
 	};
 }

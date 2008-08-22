@@ -193,6 +193,7 @@
 	if(sendingIdentifier && [requestIdentifier isEqualToString:sendingIdentifier]) {
 		[delegate tweetUpdateSucceeded];
 		[sendingIdentifier release];
+		sendingIdentifier = nil;
 	}
 	else {
 		[delegate tweetsUpdated];
@@ -221,8 +222,10 @@
 			errorString = [error localizedDescription];
 	}
 	
-	if([sendingIdentifier isEqualToString:requestIdentifier]) {
+	if(sendingIdentifier && [sendingIdentifier isEqualToString:requestIdentifier]) {
 		[delegate tweetUpdateFailedWithError:errorString];
+		[sendingIdentifier release];
+		sendingIdentifier = nil;
 	} else {
 		[delegate tweetsUpdateFailedWithError:errorString];
 	}
